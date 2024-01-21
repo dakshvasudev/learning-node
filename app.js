@@ -3,11 +3,14 @@ const http = require("http");
 
 ///creating a server using http, and sending a function that takes request and gives response
 const server = http.createServer((req, res) => {
-  console.log(req.url, req.method, req.headers);
-  ///exiting the process otherwise the loop will never end and the server will always be up and running
-
-  ///After this the code is completed.
-  //   process.exit();
+  const url = req.url;
+  if (url === "/") {
+    res.setHeader("Content-Type", "text/html");
+    res.write(
+      "<html><head><title>Enter your message</title></head><body><form action = '/message' method='POST'><input type='text' name='message'></input><button type='submit'>Send</button></form></body></html>"
+    );
+    return res.end();
+  }
 
   ///playing with response -
   res.setHeader("Content-Type", "text/html");
