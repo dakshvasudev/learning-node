@@ -1,5 +1,6 @@
 /// importing http
 const http = require("http");
+const fs = require("fs");
 
 ///creating a server using http, and sending a function that takes request and gives response
 const server = http.createServer((req, res) => {
@@ -9,6 +10,13 @@ const server = http.createServer((req, res) => {
     res.write(
       "<html><head><title>Enter your message</title></head><body><form action = '/message' method='POST'><input type='text' name='message'></input><button type='submit'>Send</button></form></body></html>"
     );
+    return res.end();
+  }
+  if (url == "/message") {
+    res.setHeader("Content-Type", "text/html");
+    fs.writeFileSync("message.txt", "DUMMY");
+    res.statusCode = 302;
+    res.setHeader("Location", "/");
     return res.end();
   }
 
