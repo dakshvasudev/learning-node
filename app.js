@@ -5,6 +5,7 @@ const fs = require("fs");
 ///creating a server using http, and sending a function that takes request and gives response
 const server = http.createServer((req, res) => {
   const url = req.url;
+  const method = req.method;
   if (url === "/") {
     res.setHeader("Content-Type", "text/html");
     res.write(
@@ -12,9 +13,17 @@ const server = http.createServer((req, res) => {
     );
     return res.end();
   }
-  if (url == "/message") {
-    res.setHeader("Content-Type", "text/html");
-    fs.writeFileSync("message.txt", "DUMMY");
+  if (url === "/message" && method === "POST") {
+    const body = [];
+    req.on("data", (data) => {
+      console.log(data);
+      body.push(data);
+    });
+    req.on("end", () => {
+      const parsedBody = Buffer.concat(body).toString();
+      const message = parsedBody.split("=")[1];
+      fs.writeFileSync("message.txt", message);
+    });
     res.statusCode = 302;
     res.setHeader("Location", "/");
     return res.end();
