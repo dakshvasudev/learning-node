@@ -1,6 +1,6 @@
 const fs = require("fs"); ///file system package
 
-const routes = (req, res) => {
+const requestHandler = (req, res) => {
   const url = req.url;
   const method = req.method;
   if (url === "/") {
@@ -36,4 +36,4 @@ const routes = (req, res) => {
   res.end();
 };
 
-module.exports = routes;
+module.exports = requestHandler;
