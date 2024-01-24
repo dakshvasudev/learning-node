@@ -10,6 +10,7 @@ const requestHandler = (req, res) => {
     );
     return res.end();
   }
+
   if (url === "/message" && method === "POST") {
     const body = [];
     req.on("data", (data) => {
