@@ -1,0 +1,15 @@
+{
+  "name": "section-5-assignment",
+  "version": "1.0.0",
+  "description": "section 5 assignment using express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "Daksh Vasudev",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
